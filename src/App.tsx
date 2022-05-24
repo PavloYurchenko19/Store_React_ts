@@ -1,11 +1,12 @@
 import React from 'react';
-import {Products} from "./components";
+
+import { Form, Products } from "./components";
 
 function App() {
     return (
         <div>
-            <h1>pavlo</h1>
             <Products/>
+            <Form/>
         </div>
     );
 }

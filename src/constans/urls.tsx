@@ -3,5 +3,5 @@ export default baseURL;
 
 export const urls = {
     products: '/products',
-    comments: '/products',
+    comments: '/comments',
 };

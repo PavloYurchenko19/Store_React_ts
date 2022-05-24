@@ -12,8 +12,8 @@ export interface IProduct {
     count: number,
     size: ISize;
     weight: string;
-    comments: [IComment];
-    children?: JSX.Element | JSX.Element[];
+    comments?: [IComment];
+    // children?: JSX.Element | JSX.Element[];
 
 
 }
