@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { Product } from "../Product/product";
-import { getAll } from "../../store/slices/productSlice";
+import { Product } from '../Product/product';
+import { getAll } from '../../store/slices/productSlice';
 
 const Products: FC = () => {
     const { products } = useAppSelector((state) => state.productReducer);
@@ -12,7 +12,7 @@ const Products: FC = () => {
     }, []);
     return (
         <div>
-            {products.map(product=><Product key={ product.id } product={ product }/>)}
+            {products.map((product) => <Product key={ product.id } product={ product }/>)}
         </div>
     );
 };
