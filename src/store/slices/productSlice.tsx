@@ -4,10 +4,12 @@ import { productsService } from '../../services';
 
 interface IProductState {
     products: IProduct[];
+    selected:IProduct[]
 }
 
 const initialState: IProductState = {
     products: [],
+    selected: JSON.parse(`${localStorage.getItem('selected')}`),
 };
 
 export const getAll = createAsyncThunk(
@@ -26,10 +28,23 @@ export const setProduct = createAsyncThunk<void, {product:IProduct}>(
         dispatch(addProduct({ product: data }));
     },
 );
+export const addToProductSelected = createAsyncThunk<void, {product:IProduct}>(
+    'productSlice/addToSelected',
+    ({ product }, { dispatch }) => {
+        dispatch(addToSelected({ product }));
+    },
+);
+
 export const deleteProduct = createAsyncThunk<void, {id:number}>(
-    'productSlice/setProduct',
+    'productSlice/deleteProduct',
     async ({ id }, { dispatch }) => {
         await productsService.deleteProduct(id);
+    },
+);
+export const deleteFromSelected = createAsyncThunk<void, {product:IProduct}>(
+    'productSlice/deleteFromSelected ',
+    ({ product }, { dispatch }) => {
+        dispatch(deleteSelected({ product }));
     },
 );
 
@@ -43,10 +58,18 @@ const ProductSlice = createSlice({
         addProduct: (state, action:PayloadAction<{product:IProduct}>) => {
             state.products.push(action.payload.product);
         },
+        addToSelected: (state, action:PayloadAction<{product:IProduct}>) => {
+            state.selected.push(action.payload.product);
+        },
+        deleteSelected: (state, action:PayloadAction<{product:IProduct}>) => {
+            state.selected = state.selected.filter((element) => element.id !== action.payload.product.id);
+        },
     },
 
 });
 
 const productReducer = ProductSlice.reducer;
-const { getProducts, addProduct } = ProductSlice.actions;
+const {
+    getProducts, addProduct, addToSelected, deleteSelected,
+} = ProductSlice.actions;
 export default productReducer;
