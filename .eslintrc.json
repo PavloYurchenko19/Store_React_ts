@@ -23,16 +23,21 @@
     "prefer-destructuring": "off",
     "no-param-reassign": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false, "variables": false }],
-
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "import/no-unresolved": [
+      2,
+      { "caseSensitive": false }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "js": "never",
-        "ts": "never",
+        "ts": "always",
         "tsx": "never",
         "css": "always",
-        "scss": "always"
+        "scss": "always",
+        "d": "always"
       }
     ],
     "class-methods-use-this": "off",
@@ -42,9 +47,13 @@
     "dot-notation": "off"
   },
   "settings": {
-    "import/resolver" : {
+    "import/extensions": [".js",".jsx",".ts",".tsx",".d.ts"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts",".tsx",".d.ts"]
+    },
+    "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".tsx", ".css", ".scss"]
+        "extensions": [".js",".jsx",".ts",".tsx",".d.ts"]
       }
     }
   }

@@ -1,0 +1,9 @@
+.hed {
+  background: #000;
+  color: yellow;
+}
+.hed:hover {
+  background: red;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

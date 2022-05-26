@@ -3,7 +3,8 @@ import { IProduct } from '../interface';
 import { urls } from '../constans/urls';
 
 export const productsService = {
-    getAll: () => axiosService.get<IProduct[]>(urls.products),
+    getAll: (sort: string, order: string) => axiosService.get<IProduct[]>(`${urls.products}?_sort=${sort}&_order=${order}`),
     createProduct: (product:IProduct) => axiosService.post<IProduct>(urls.products, product),
     deleteProduct: (id:number) => axiosService.delete<void>(`${urls.products}/${id}`),
+    getById: (id: string | undefined) => axiosService.get<IProduct>(`${urls.products}/${id}`),
 };

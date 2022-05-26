@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { Products } from '../../components';
+import { Form, Products } from '../../components';
 
 const StorePage:FC = () => (
     <div>
         <Products/>
+        <Form/>
     </div>
 );
 

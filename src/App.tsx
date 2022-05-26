@@ -4,7 +4,7 @@ import {
     Outlet, Route, Routes,
 } from 'react-router-dom';
 import { Selected } from './components';
-import { FirstPage, StorePage } from './Pages';
+import { FirstPage, ProductDetailsPage, StorePage } from './Pages';
 
 function App() {
     return (
@@ -12,6 +12,7 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<FirstPage/>}>
                     <Route path={'/store'} element={<StorePage/>}/>
+                    <Route path={'/aboutProduct/:id'} element={<ProductDetailsPage/>}/>
                     <Route path={'/selected'} element={<Selected/>}/>
                 </Route>
             </Routes>

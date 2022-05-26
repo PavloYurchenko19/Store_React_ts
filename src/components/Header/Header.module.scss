@@ -1,0 +1,7 @@
+.hed{
+    background: #000;
+    color: yellow;
+    &:hover{
+        background: red;
+    }
+}

@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "eslint-import-resolver-typescript": { "extensions": [".ts", ".tsx", ".d.ts"] },
     "types": [
       "jest","node"
     ],
