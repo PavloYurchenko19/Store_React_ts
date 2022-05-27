@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
-import { Form, Products } from '../../components';
+import { Outlet } from 'react-router-dom';
+
+import { Products } from '../../components';
 
 const StorePage:FC = () => (
-    <div>
+    <>
         <Products/>
-        <Form/>
-    </div>
+        <Outlet/>
+    </>
 );
 
 export { StorePage };

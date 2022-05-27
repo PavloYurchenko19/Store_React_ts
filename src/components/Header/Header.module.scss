@@ -1,7 +1,101 @@
-.hed{
-    background: #000;
-    color: yellow;
-    &:hover{
-        background: red;
+@import "../../index";
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid darkmagenta;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: 1;
+  padding-bottom: 10px;
+
+  button {
+    height: 30px;
+    width: 100px;
+    background: none;
+    margin-left: 30px;
+
+    &:hover {
+      cursor: pointer;
     }
+  }
+
+  input {
+    height: 30px;
+    width: 150px;
+    margin-left: 20px;
+    border-radius: 20px;
+    padding-left: 15px;
+  }
+
+  .icon {
+    height: 50px;
+    width: 50px;
+    color: forestgreen;
+
+    &:hover {
+      color: violet;
+      padding: 4px;
+      transition-duration: 1s;
+    }
+  }
+
+  select {
+    border-radius: 20px;
+    height: 40px;
+    margin: 5px;
+    width: 80px;
+    font-size: 16px;
+
+    &:hover {
+      padding: 2px;
+      border: 2px solid forestgreen;
+    }
+
+    &:current {
+      border: none;
+    }
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      padding: 0 10px;
+      margin-left: 20px;
+    }
+  }
+
+  .count {
+    position: relative;
+    padding-right: 20px;
+    @extend %df;
+
+    .quantity {
+      position: absolute;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      left: auto;
+      bottom: 55%;
+      justify-content: center;
+      background: white;
+      width: 20px;
+      border-radius: 50px;
+
+    }
+  }
+
+  .SideInfo {
+   @extend %df;
+    padding-left: 20px;
+  }
+
 }

@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from 'react';
+import { GiFullWoodBucket } from 'react-icons/gi';
+import { NavLink } from 'react-router-dom';
+
 import { IProduct } from '../../interface';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { deleteFromSelected } from '../../store/slices/productSlice';
+import { addQuantity, deleteFromSelected } from '../../store/slices/productSlice';
+import styl from './Selected.module.scss';
 
 const Selected = () => {
-    const { selected } = useAppSelector((state) => state.productReducer);
+    const { selected, quantitySelected } = useAppSelector((state) => state.productReducer);
     const [products, setProducts] = useState([]);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
         localStorage.setItem('selected', JSON.stringify(selected));
         setProducts([]);
         setProducts(JSON.parse(`${localStorage.getItem('selected')}`));
-    }, [selected]);
+    }, [selected, quantitySelected]);
 
-    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(addQuantity({ quantity: products.length }));
+    }, [products]);
+
     return (
-        <div>
-            <h2>ura</h2>
-            {products.map((product:IProduct) => <div key={product.id}>
-                {product.id}
-                {product.name}
-                <button onClick={() => { dispatch(deleteFromSelected({ product })); }}>delete</button>
+        <div className={styl.selected}>
+            {products.map((product:IProduct) => <div className={styl.oneSelected} key={product.id}>
+                <div className={styl.selectedLeftSide}>
+                    <h2>{product.name}</h2>
+                    <NavLink className={styl.imgBox} to={`/aboutProduct/${product.id}`}>
+                        <img src={product.imageUrl} alt={product.name}/>
+                    </NavLink>
+                </div>
 
+                <h3>Price: {product.price}$ </h3>
+                <GiFullWoodBucket className={styl.garbage} onClick={() => {
+                    dispatch(deleteFromSelected({ product }));
+                }}/>
             </div>)}
         </div>
     );

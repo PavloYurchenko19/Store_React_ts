@@ -1,0 +1,101 @@
+@import "../../index";
+.mainBox {
+  padding-top: 100px;
+  @extend %df;
+
+  img {
+    max-height: 400px;
+    padding-top: 40px;
+    max-width: 300px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px;
+    padding: 20px;
+  }
+
+  .aboutProduct {
+    @extend %df;
+    position: relative;
+  }
+
+  .comments {
+    width: 600px;
+    min-height: 100px;
+    padding: 40px;
+    border: 1px solid #000;
+
+    h2 {
+      margin-left: 250px;
+    }
+
+    border-radius: 50px;
+  }
+
+  .comment {
+    padding: 10px;
+    display: flex;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+
+  }
+
+  .garbage {
+    width: 40px;
+    height: 40px;
+    transition-duration: 1s;
+    transition-property: transform;
+
+    &:hover {
+      cursor: pointer;
+      transform: rotate(360deg);
+    }
+  }
+
+  .heart {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    .heartSize {
+      height: 100%;
+      width: 100%;
+    }
+
+  }
+
+  .red {
+    color: red;
+    border: none;
+  }
+
+  form {
+    margin: 30px;
+
+    input {
+      padding: 10px;
+      box-sizing: border-box;
+      height: 40px;
+      width: 250px;
+      border-radius: 10px;
+
+      &::grammar-error {
+        background: #000;
+      }
+    }
+
+    button {
+      height: 40px;
+      width: 150px;
+      border-radius: 20px;
+    }
+  }
+}

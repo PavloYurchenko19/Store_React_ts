@@ -20,6 +20,7 @@ export const getAllByproductId = createAsyncThunk<void, { id:string | undefined}
         dispatch(getComments({ comments: data }));
     },
 );
+
 export const addComment = createAsyncThunk<void, { comment: IComment}>(
     'commentSlice/addComment',
     async ({ comment }, { dispatch }) => {
@@ -27,6 +28,7 @@ export const addComment = createAsyncThunk<void, { comment: IComment}>(
         dispatch(addNewComment({ comment: data }));
     },
 );
+
 export const deleteComment = createAsyncThunk<void, {id: number}>(
     'commentSlice/deleteComment',
     async ({ id }, _) => {

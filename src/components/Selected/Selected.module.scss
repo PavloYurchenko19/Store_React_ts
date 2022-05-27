@@ -1,0 +1,41 @@
+@import "../../index";
+
+.selected {
+  padding: 100px 0 50px;
+
+  .oneSelected {
+    border-bottom: 1px solid #000;
+    display: flex;
+    border-radius: 50px;
+    justify-content: space-between;
+    padding: 30px;
+
+    .garbage {
+      width: 40px;
+      height: 40px;
+      transition-duration: 1s;
+      transition-property: transform;
+      align-self: flex-end;
+
+      &:hover {
+        cursor: pointer;
+        transform: rotate(360deg);
+      }
+    }
+
+    h3 {
+      align-self: flex-end;
+    }
+
+    img {
+      height: 90%;
+      max-width: 100%;
+      align-self: center;
+    }
+
+    .selectedLeftSide{
+      @extend %df;
+    }
+  }
+}
+

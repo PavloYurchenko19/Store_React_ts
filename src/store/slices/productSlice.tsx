@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+
 import { IProduct } from '../../interface';
 import { productsService } from '../../services';
 
@@ -6,18 +7,22 @@ interface IProductState {
     products: IProduct[];
     selected: IProduct[];
     product: IProduct;
+    changedRate: IProduct;
     deletedProduct: object;
     sort: string;
     order: string;
+    quantitySelected: number;
 }
 
 const initialState: IProductState = {
     products: [],
     product: {} as IProduct,
+    changedRate: {} as IProduct,
     selected: JSON.parse(`${localStorage.getItem('selected')}`),
     deletedProduct: {},
     order: 'asc',
     sort: 'name',
+    quantitySelected: JSON.parse(`${localStorage.getItem('selected')}`).length,
 };
 
 export const getAll = createAsyncThunk<void, { sort: string, order: string}>(
@@ -36,6 +41,7 @@ export const setProduct = createAsyncThunk<void, {product:IProduct}>(
         dispatch(addProduct({ product: data }));
     },
 );
+
 export const getProductById = createAsyncThunk<void, {id:string | undefined}>(
     'productSlice/getProductById',
     async ({ id }, { dispatch }) => {
@@ -57,10 +63,32 @@ export const deleteProduct = createAsyncThunk<void, {id:number}>(
         dispatch(getDeletedProduct({}));
     },
 );
+
 export const deleteFromSelected = createAsyncThunk<void, {product:IProduct}>(
     'productSlice/deleteFromSelected ',
     ({ product }, { dispatch }) => {
         dispatch(deleteSelected({ product }));
+    },
+);
+export const fillFilter = createAsyncThunk<void, {sort:string, order:string}>(
+    'productSlice/getFilter',
+    ({ sort, order }, { dispatch }) => {
+        dispatch(changeFilter({ sort, order }));
+    },
+);
+
+export const addQuantity = createAsyncThunk<void, {quantity:number}>(
+    'productSlice/addQuantity',
+    ({ quantity }, { dispatch }) => {
+        dispatch(addQuantitySelected({ quantity }));
+    },
+);
+
+export const changeRate = createAsyncThunk<void, { id: number, rate: number; }>(
+    'productSlice/changeRate',
+    async ({ id, rate }, { dispatch }) => {
+        const { data } = await productsService.changeRate(id, rate);
+        dispatch(getChangedRate({ changedRate: data }));
     },
 );
 
@@ -90,12 +118,18 @@ const ProductSlice = createSlice({
             state.sort = action.payload.sort;
             state.order = action.payload.order;
         },
+        addQuantitySelected: (state, action:PayloadAction<{ quantity:number }>) => {
+            state.quantitySelected = action.payload.quantity;
+        },
+        getChangedRate: (state, action:PayloadAction<{ changedRate:IProduct }>) => {
+            state.changedRate = action.payload.changedRate;
+        },
     },
-
 });
 
 const productReducer = ProductSlice.reducer;
 const {
     getProducts, addProduct, addToSelected, deleteSelected, getById, getDeletedProduct, changeFilter,
+    addQuantitySelected, getChangedRate,
 } = ProductSlice.actions;
 export default productReducer;

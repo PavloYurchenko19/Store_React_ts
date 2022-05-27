@@ -12,6 +12,8 @@ export interface IProduct {
     count: number,
     size: ISize;
     weight: string;
+    price: number;
+    rate: number;
     comments?: [IComment];
 
 }

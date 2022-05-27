@@ -3,20 +3,23 @@ import React from 'react';
 import {
     Outlet, Route, Routes,
 } from 'react-router-dom';
-import { Selected } from './components';
-import { FirstPage, ProductDetailsPage, StorePage } from './Pages';
+
+import { Header, Selected } from './components';
+import { ProductDetailsPage, StorePage } from './Pages';
+import styl from './App.module.scss';
 
 function App() {
     return (
         <div>
-            <Routes>
-                <Route path={'/'} element={<FirstPage/>}>
-                    <Route path={'/store'} element={<StorePage/>}/>
+            <Header/>
+            <div className={styl.wrap} >
+                <Routes>
+                    <Route path={'/'} element={<StorePage/>}/>
                     <Route path={'/aboutProduct/:id'} element={<ProductDetailsPage/>}/>
                     <Route path={'/selected'} element={<Selected/>}/>
-                </Route>
-            </Routes>
-            <Outlet/>
+                </Routes>
+                <Outlet/>
+            </div>
         </div>
     );
 }
