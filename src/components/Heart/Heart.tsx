@@ -31,12 +31,11 @@ const Heart:FC<{product: IProduct}> = ({ product }) => {
 
     return (
         <>
-            {!add && (<BsHeart className={`${styl.heartSize} ${styl.heart}`} onClick={() => {
-                dispatch(addToProductSelected({ product }));
-            }} />)}
-            {add && (<BsHeart className={`${styl.red} ${styl.heartSize} ${styl.heart}`} onClick={() => {
+            {add ? <BsHeart className={`${styl.red} ${styl.heartSize} ${styl.heart}`} onClick={() => {
                 dispatch(deleteFromSelected({ product }));
-            }} />) }
+            }} /> : <BsHeart className={`${styl.heartSize} ${styl.heart}`} onClick={() => {
+                dispatch(addToProductSelected({ product }));
+            }} /> }
         </>
     );
 };
