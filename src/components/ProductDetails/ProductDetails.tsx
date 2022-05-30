@@ -17,7 +17,7 @@ import styl from './ProductDetails.module.scss';
 import { Heart } from '../Heart/Heart';
 
 const ProductDetails: FC = () => {
-    const { product } = useAppSelector((state) => state.productReducer);
+    const { product, changedRate } = useAppSelector((state) => state.productReducer);
     const { comment, comments } = useAppSelector((state) => state.commentReducer);
     const [refresh, setRefresh] = useState(false);
 
@@ -28,7 +28,7 @@ const ProductDetails: FC = () => {
 
     useEffect(() => {
         dispatch(getProductById({ id: idProduct }));
-    }, [id]);
+    }, [id, changedRate]);
 
     useEffect(() => {
         dispatch(getAllByproductId({ id: idProduct }));
@@ -48,6 +48,7 @@ const ProductDetails: FC = () => {
             <div className={styl.aboutProduct}>
 
                 <Heart key={product.id} product={product}/>
+
                 <h2>{product.name}</h2>
                 <img src={product.imageUrl} alt={product.name}/>
 

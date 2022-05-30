@@ -5,8 +5,8 @@ import { BsHeart } from 'react-icons/bs';
 
 import styl from './Header.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fillFilter } from '../../store/slices/productSlice';
 import { Form } from '../Form/Form';
+import { changeFilter } from '../../store/slices/productSlice';
 
 const Header: FC = () => {
     const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ const Header: FC = () => {
     const [selectedOrder, setSelectedOrder] = useState(`${order}`);
 
     useEffect(() => {
-        dispatch(fillFilter({ sort: selectedSort, order: selectedOrder }));
+        dispatch(changeFilter({ sort: selectedSort, order: selectedOrder }));
     }, [selectedSort, selectedOrder]);
 
     return (

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { IProduct } from '../../interface';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addQuantity, deleteFromSelected } from '../../store/slices/productSlice';
+import { addQuantitySelected, deleteSelected } from '../../store/slices/productSlice';
 import styl from './Selected.module.scss';
 
 const Selected = () => {
@@ -19,7 +19,7 @@ const Selected = () => {
     }, [selected, quantitySelected]);
 
     useEffect(() => {
-        dispatch(addQuantity({ quantity: products.length }));
+        dispatch(addQuantitySelected({ quantity: products.length }));
     }, [products]);
 
     return (
@@ -34,7 +34,7 @@ const Selected = () => {
 
                 <h3>Price: {product.price}$ </h3>
                 <GiFullWoodBucket className={styl.garbage} onClick={() => {
-                    dispatch(deleteFromSelected({ product }));
+                    dispatch(deleteSelected({ product }));
                 }}/>
             </div>)}
         </div>

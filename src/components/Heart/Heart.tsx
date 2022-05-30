@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { BsHeart } from 'react-icons/bs';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addQuantity, addToProductSelected, deleteFromSelected } from '../../store/slices/productSlice';
+import { addQuantitySelected, addToSelected, deleteSelected } from '../../store/slices/productSlice';
 import styl from './Heart.module.scss';
 import { IProduct } from '../../interface';
 
@@ -14,7 +14,7 @@ const Heart:FC<{product: IProduct}> = ({ product }) => {
 
     useEffect(() => {
         localStorage.setItem('selected', JSON.stringify(selected));
-        dispatch(addQuantity({
+        dispatch(addQuantitySelected({
             quantity: JSON
                 .parse(`${localStorage.getItem('selected')}`).length,
         }));
@@ -32,9 +32,9 @@ const Heart:FC<{product: IProduct}> = ({ product }) => {
     return (
         <>
             {add ? <BsHeart className={`${styl.red} ${styl.heartSize} ${styl.heart}`} onClick={() => {
-                dispatch(deleteFromSelected({ product }));
+                dispatch(deleteSelected({ product }));
             }} /> : <BsHeart className={`${styl.heartSize} ${styl.heart}`} onClick={() => {
-                dispatch(addToProductSelected({ product }));
+                dispatch(addToSelected({ product }));
             }} /> }
         </>
     );

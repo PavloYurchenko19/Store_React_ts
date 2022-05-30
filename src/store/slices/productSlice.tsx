@@ -49,38 +49,12 @@ export const getProductById = createAsyncThunk<void, {id:string | undefined}>(
         dispatch(getById({ product: data }));
     },
 );
-export const addToProductSelected = createAsyncThunk<void, {product:IProduct}>(
-    'productSlice/addToSelected',
-    ({ product }, { dispatch }) => {
-        dispatch(addToSelected({ product }));
-    },
-);
 
 export const deleteProduct = createAsyncThunk<void, {id:number}>(
     'productSlice/deleteProduct',
     async ({ id }, { dispatch }) => {
         await productsService.deleteProduct(id);
         dispatch(getDeletedProduct({}));
-    },
-);
-
-export const deleteFromSelected = createAsyncThunk<void, {product:IProduct}>(
-    'productSlice/deleteFromSelected ',
-    ({ product }, { dispatch }) => {
-        dispatch(deleteSelected({ product }));
-    },
-);
-export const fillFilter = createAsyncThunk<void, {sort:string, order:string}>(
-    'productSlice/getFilter',
-    ({ sort, order }, { dispatch }) => {
-        dispatch(changeFilter({ sort, order }));
-    },
-);
-
-export const addQuantity = createAsyncThunk<void, {quantity:number}>(
-    'productSlice/addQuantity',
-    ({ quantity }, { dispatch }) => {
-        dispatch(addQuantitySelected({ quantity }));
     },
 );
 
@@ -128,7 +102,7 @@ const ProductSlice = createSlice({
 });
 
 const productReducer = ProductSlice.reducer;
-const {
+export const {
     getProducts, addProduct, addToSelected, deleteSelected, getById, getDeletedProduct, changeFilter,
     addQuantitySelected, getChangedRate,
 } = ProductSlice.actions;

@@ -21,6 +21,7 @@
     "no-underscore-dangle": "off",
     "padded-blocks": ["error", "never"],
     "prefer-destructuring": "off",
+    "linebreak-style": "off",
     "no-param-reassign": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": false, "variables": false }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
